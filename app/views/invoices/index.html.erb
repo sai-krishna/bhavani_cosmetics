@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:retailer) %></th>
       <th><%= model_class.human_attribute_name(:bill_number) %></th>
       <th><%= model_class.human_attribute_name(:bill_date) %></th>
       <th><%= model_class.human_attribute_name(:total_amount) %></th>
@@ -17,10 +18,11 @@
     <% @invoices.each do |invoice| %>
       <tr>
         <td><%= link_to invoice.id, invoice_path(invoice) %></td>
+        <td><%= invoice.retailer.name %></td>
         <td><%= invoice.bill_number %></td>
-        <td><%= invoice.bill_date %></td>
+        <td><%= format_date invoice.bill_date %></td>
         <td><%= invoice.total_amount %></td>
-        <td><%=l invoice.created_at %></td>
+        <td><%= format_datetime invoice.created_at %></td>
         <td>
           <%= link_to t('.show', :default => t("helpers.links.show")),
                       invoice_path(invoice), :class => 'btn btn-default btn-xs' %>

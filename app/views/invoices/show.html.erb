@@ -19,7 +19,7 @@
   <dt><strong><%= model_class.human_attribute_name(:bill_number) %>:</strong></dt>
   <dd><%= @invoice.bill_number %></dd>
   <dt><strong><%= model_class.human_attribute_name(:bill_date) %>:</strong></dt>
-  <dd><%= @invoice.bill_date %></dd>
+  <dd><%= format_date @invoice.bill_date %></dd>
   <dt><strong><%= model_class.human_attribute_name(:total_amount) %>:</strong></dt>
   <dd><%= @invoice.total_amount %></dd>
 </dl>
@@ -29,9 +29,35 @@
 <div>
   <h3>Payments</h3>
   <div class="pull-right">
-    <%= link_to "Add Payment", new_payment_path(invoice_id: @invoice.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal-window', :class => 'btn btn-primary'} %>
+    <%= link_to "Add Payment", new_invoice_payment_path(@invoice), class: 'btn btn-primary' %>
   </div>
 </div>
-
-<% @invoice.payments.each do |payment| %>
+<br>
+<br>
+<% if @invoice.payments.present? %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Payment Date</th>
+        <th>Amount</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @invoice.payments.each do |payment| %>
+        <tr>
+          <td><%= format_date payment.issue_date %></td>
+          <td><%= payment.amount %></td>
+          <td>
+            <%= link_to edit_invoice_payment_path(payment.invoice, payment), class: 'btn btn-warning' do %>
+              <i class="glyphicon glyphicon-edit"></i>
+            <% end %>
+            <%= link_to invoice_payment_path(payment.invoice, payment), method: :delete, class: 'btn btn-danger' do %>
+              <i class="glyphicon glyphicon-remove"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
