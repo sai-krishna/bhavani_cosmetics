@@ -4,7 +4,8 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    @invoices_filter_form = InvoicesFilterForm.new(filter_params.to_h)
+    @invoices = @invoices_filter_form.fetch_invoices
   end
 
   # GET /invoices/1
@@ -70,5 +71,9 @@ class InvoicesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def invoice_params
       params.require(:invoice).permit(:retailer_id, :bill_number, :bill_date, :total_amount)
+    end
+
+    def filter_params
+      params.fetch(:invoices_filter_form, {}).permit(:bill_number)
     end
 end
