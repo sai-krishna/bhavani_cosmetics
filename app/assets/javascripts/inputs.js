@@ -1,3 +1,7 @@
 $(document).ready(function(){
-  $('input.datepicker').datepicker({orientation: 'bottom'});
+  $('input.datepicker').datepicker({
+    format: 'd-m-yyyy',
+    orientation: 'bottom',
+    autoclose: true
+  });
 });

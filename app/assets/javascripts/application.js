@@ -13,6 +13,7 @@
 //= require jquery
 //= require rails-ujs
 //= require twitter/bootstrap
-//= require bootstrap-datepicker
+//= require bootstrap-datepicker/core
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.en-CA
 //= require_tree .
 //= require inputs
