@@ -1,11 +1,79 @@
 class PaymentsController < ApplicationController
+  before_action :set_invoice, except: [:index]
+  before_action :set_payment, only: [:edit, :update, :destroy]
+
+  # GET /payments
+  # GET /payments.json
+  def index
+    @payments = Payment.all
+  end
+
+  # GET /payments/1
+  # GET /payments/1.json
+  def show
+  end
+
+  # GET /payments/new
   def new
-    @payment = Payment.new
+    @payment = @invoice.payments.build
+  end
+
+  # GET /payments/1/edit
+  def edit
+  end
+
+  # POST /payments
+  # POST /payments.json
+  def create
+    @payment = @invoice.payments.build(payment_params)
+
     respond_to do |format|
-      format.js
+      if @payment.save
+        format.html { redirect_to invoice_path(@payment.invoice), notice: 'Payment was successfully created.' }
+        format.json { render :show, status: :created, location: @payment }
+      else
+        format.html { render :new }
+        format.json { render json: @payment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def create
+  # PATCH/PUT /payments/1
+  # PATCH/PUT /payments/1.json
+  def update
+    respond_to do |format|
+      if @payment.update(payment_params)
+        format.html { redirect_to invoice_path(@invoice), notice: 'Payment was successfully updated.' }
+        format.json { render :show, status: :ok, location: @payment }
+      else
+        format.html { render :edit }
+        format.json { render json: @payment.errors, status: :unprocessable_entity }
+      end
+    end
   end
+
+  # DELETE /payments/1
+  # DELETE /payments/1.json
+  def destroy
+    @payment.destroy
+    respond_to do |format|
+      format.html { redirect_to invoice_path(@invoice), notice: 'Payment was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+  private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_invoice
+      @invoice = Invoice.find(params[:invoice_id])
+    end
+
+    def set_payment
+      @payment = @invoice.payments.find(params[:id])
+    end
+
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def payment_params
+      params.require(:payment).permit(:issue_date, :amount)
+    end
 end
