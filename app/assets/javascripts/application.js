@@ -17,3 +17,4 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.en-CA
 //= require_tree .
 //= require inputs
+//= require select2

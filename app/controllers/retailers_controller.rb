@@ -7,6 +7,12 @@ class RetailersController < ApplicationController
     @retailers = Retailer.all
   end
 
+  def search
+    retailers = Retailer.where("name LIKE ?", "%#{params[:term]}%")
+    results = retailers.select("id, name as text").page(params[:page].to_i).per(10)
+    render json: {retailers: results, total_count: retailers.count}
+  end
+
   # GET /retailers/1
   # GET /retailers/1.json
   def show

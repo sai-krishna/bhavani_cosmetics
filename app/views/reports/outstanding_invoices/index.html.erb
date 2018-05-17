@@ -1,0 +1,9 @@
+<div class="panel panel-default">
+  <%= form_for @outstanding_invoices_filter_form, url: reports_outstanding_invoices_path, method: :get, html: {class: 'form-inline', style: 'padding: 15px 0 15px 10px'} do |f|%>
+    <div class="form-group">
+      <%= f.label :retailer %>
+      <%= f.text_field :retailer_id, class: 'retailer-search', style: 'width:250px' %>
+    </div>
+    <%= f.submit "Filter", :class => 'btn btn-primary' %>
+  <% end %>
+</div>

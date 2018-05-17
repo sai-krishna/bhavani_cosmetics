@@ -25,6 +25,7 @@ gem 'coffee-rails', '~> 4.2'
 gem "twitter-bootstrap-rails"
 gem 'bootstrap-datepicker-rails'
 gem 'kaminari'
+gem 'select2-rails', '~> 3.5.10'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production

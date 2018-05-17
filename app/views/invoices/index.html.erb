@@ -8,9 +8,14 @@
   <% end %>
 </div>
 <%- model_class = Invoice -%>
+
 <div class="page-header">
+  <span>
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
+  <%= link_to t('.new', :default => t("helpers.links.new")), new_invoice_path, :class => 'btn btn-primary pull-right' %>
+  </span>
 </div>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -48,6 +53,3 @@
   </tbody>
 </table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_invoice_path,
-            :class => 'btn btn-primary' %>
