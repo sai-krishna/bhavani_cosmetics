@@ -25,6 +25,10 @@ $(document).ready(function(){
         return { results: data.retailers, more: more };
       },
       cache: true
+    },
+    initSelection : function (element, callback) {
+      var elementText = $(element).attr('data-initvalue');
+      callback(JSON.parse(elementText));
     }
   });
 });
