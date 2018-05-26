@@ -3,8 +3,8 @@ class Reports::OutstandingInvoicesController < ApplicationController
     @outstanding_invoices_filter_form = Reports::OutstandingInvoicesFilterForm.new(filter_params.to_h)
     @invoices = @outstanding_invoices_filter_form
       .fetch_outstanding_invoices
-      .page(params.try(:[], :page) || 1)
-      .per(params.try(:[], :per) || 30)
+      .page(params[:page] || 1)
+      .per(params[:per] || 30)
   end
 
   private

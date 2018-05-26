@@ -22,6 +22,8 @@
   <dd><%= format_date @invoice.bill_date %></dd>
   <dt><strong><%= model_class.human_attribute_name(:total_amount) %>:</strong></dt>
   <dd><%= @invoice.total_amount %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:retailer) %>:</strong></dt>
+  <dd><%= @invoice.retailer.name %></dd>
 </dl>
 
 <hr>

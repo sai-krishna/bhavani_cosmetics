@@ -9,7 +9,7 @@ class InvoicesFilterForm < BaseForm
     if bill_number
       Invoice.where(bill_number: bill_number)
     else
-      Invoice.all
+      Invoice
     end
   end
 end

@@ -5,7 +5,7 @@ class InvoicesController < ApplicationController
   # GET /invoices.json
   def index
     @invoices_filter_form = InvoicesFilterForm.new(filter_params.to_h)
-    @invoices = @invoices_filter_form.fetch_invoices
+    @invoices = @invoices_filter_form.fetch_invoices.page(params[:page] || 1).per(30)
   end
 
   # GET /invoices/1

@@ -18,7 +18,9 @@
   <div class="form-group">
     <%= f.label :retailer_id, :class => 'control-label col-lg-2' %>
     <div class="col-lg-10">
-      <%= f.select :retailer_id, Retailer.all.collect{|r| [r.name, r.id]}, {:prompt => 'Select One'}, {:class => 'form-control'} %>
+      <% retailer_id = f.object.try(:retailer_id) %>
+      <% retailer_name = retailer_id.present? ? Retailer.find(retailer_id).name : nil %>
+      <%= f.text_field :retailer_id, class: 'retailer-search', style: 'width:250px', data: {initvalue: {id: retailer_id, text: retailer_name}} %>
     </div>
     <%=f.error_span(:bill_number) %>
   </div>

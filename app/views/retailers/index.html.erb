@@ -1,7 +1,7 @@
 <%- model_class = Retailer -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_retailer_path,
+            :class => 'btn btn-primary pull-right text-white', style: 'color:white' %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -32,7 +32,6 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_retailer_path,
-            :class => 'btn btn-primary' %>
+<div class="pull-right">
+  <%= paginate @retailers %>
+</div>

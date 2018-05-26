@@ -21,17 +21,12 @@
 
     <div class="navbar navbar-default navbar-static-top">
       <div class="container">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
         <a class="navbar-brand" href="#">BhavaniCosmetics</a>
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
-            <li><%= link_to "Retailers", retailers_path  %></li>
-            <li><%= link_to "Invoices", invoices_path  %></li>
-            <li><%= link_to "Outstanding Invoices Report", reports_outstanding_invoices_path  %></li>
+            <li class=<%= controller_name == 'retailers' ? 'active' : ''%>><%= link_to "Retailers", retailers_path  %></li>
+            <li class=<%= controller_name == 'invoices' ? 'active' : ''%>><%= link_to "Invoices", invoices_path  %></li>
+            <li class=<%= controller_name == 'outstanding_invoices' ? 'active' : ''%>><%= link_to "Outstanding Invoices Report", reports_outstanding_invoices_path  %></li>
           </ul>
         </div>
       </div>
