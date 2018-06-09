@@ -5,6 +5,7 @@ class Reports::OutstandingInvoicesController < ApplicationController
       .fetch_outstanding_invoices
       .page(params[:page] || 1)
       .per(params[:per] || 30)
+    render :print, layout: false if params[:print]
   end
 
   private

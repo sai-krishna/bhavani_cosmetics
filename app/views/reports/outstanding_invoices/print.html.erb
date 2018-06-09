@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <%= csrf_meta_tags %>
+    <%= javascript_include_tag 'application' %>
+  </head>
+  <body style="-webkit-print-color-adjust:exact;" onload="javascript: window.print();">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="text-center">Id</th>
+          <th class="text-center">Retailer</th>
+          <th class="text-center">Bill No</th>
+          <th class="text-center">Bill Date</th>
+          <th class="text-center">Total Amount</th>
+          <th class="text-center">Amount Paid</th>
+          <th class="text-center">Balance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @invoices.each_with_index do |invoice, index| %>
+          <tr>
+            <td class="text-center"><%= index + 1 %></td>
+            <td class="text-center"><%= invoice.retailer_name %></td>
+            <td class="text-center"><%= invoice.bill_number %></td>
+            <td class="text-center"><%= invoice.bill_date %></td>
+            <td class="text-center"><%= invoice.total_amount %></td>
+            <td class="text-center"><%= invoice.payments_amount %></td>
+            <td class="text-center"><%= invoice.balance %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </body>
+</html>
